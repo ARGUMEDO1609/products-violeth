@@ -32,8 +32,12 @@
   </div>
 
   <div class="my-5">
-    <%= form.label :available_sizes %>
-    <%= form.text_field :available_sizes, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.label :sizes %>
+    <%= form.collection_check_boxes(:size_ids, Size.all, :id, :name) do |b| %>
+      <div>
+        <%= b.check_box %> <%= b.label %>
+      </div>
+    <% end %>
   </div>
 
   <div class="inline">

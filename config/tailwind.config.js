@@ -11,6 +11,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        bring: ['Bring', ...defaultTheme.fontFamily.sans],
       },
     },
   },

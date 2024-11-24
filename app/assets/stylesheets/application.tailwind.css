@@ -11,4 +11,11 @@
 }
 
 */
+@layer components {
+  @font-face {
+    font-family: 'Bring';
+    src: url('/fonts/Bring.otf');
+  }
+}
+
 @import 'actiontext.css';
