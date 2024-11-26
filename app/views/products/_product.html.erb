@@ -1,29 +1,22 @@
-<div id="<%= dom_id product %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= product.name %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
-    <%= product.description %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Images:</strong>
-    <% product.images.each do |image| %>
-      <div><%= link_to image.filename, image %></div>
+<%= link_to product do %>
+  <div id="<%= dom_id product %>">
+    <% if product.images.attached? %> 
+      <%= image_tag product.images.first, class: "w-full h-80 object-cover rounded-lg hover:brightness-75 transition-all duration-250" if product.images.any? %>
+    <% else %>
+      <%= image_tag "placeholder.jpg", class: "w-full h-80 object-cover rounded-lg hover:brightness-75 transition-all duration-250" %>
     <% end %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Price:</strong>
-    <%= product.price %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Available sizes:</strong>
-    <%= product.available_sizes %>
-  </p>
-
-</div>
+    <p class="font-bold text-lg"><%= product.name %></p>
+    <p class="font-bold text-lg"><%= number_to_currency product.price %></p>
+    
+    <% if product.sizes.any? %>
+      <p>Tallas disponibles:</p>
+      <ul class="list-disc list-inside">
+        <% product.sizes.each do |size| %>
+          <li><%= size.name %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>No hay tallas disponibles.</p>
+    <% end %>
+  </div>
+<% end %>

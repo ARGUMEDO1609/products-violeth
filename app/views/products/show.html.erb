@@ -6,25 +6,13 @@
 
     <%= render @product %>
 
-    <!-- Mostrar tallas disponibles -->
-    <div class="my-5">
-      <h3 class="text-lg font-bold mb-2">Tallas disponibles:</h3>
-      <% if @product.sizes.any? %>
-        <ul class="list-disc list-inside">
-          <% @product.sizes.each do |size| %>
-            <li><%= size.name %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="text-gray-500">No hay tallas asignadas a este producto.</p>
-      <% end %>
-    </div>
-
+    <% if current_admin %>
     <%= link_to "Edit this product", edit_product_path(@product), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to products", products_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Destroy this product", @product, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
+    <% end %>
   </div>
 </div>
 

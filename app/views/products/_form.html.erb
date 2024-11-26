@@ -13,33 +13,38 @@
 
   <div class="my-5">
     <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
   </div>
 
   <div class="my-5">
     <%= form.label :description %>
-    <%= form.rich_text_area :description, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.rich_text_area :description, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
   </div>
 
   <div class="my-5">
     <%= form.label :images %>
-    <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.file_field :images, multiple: true, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
   </div>
 
   <div class="my-5">
     <%= form.label :price %>
-    <%= form.text_field :price, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.text_field :price, class: "block shadow rounded-md border border-gray-400 outline-none px-3 py-2 mt-2 w-full bg-gray-100" %>
   </div>
 
   <div class="my-5">
-    <%= form.label :sizes %>
-    <%= form.collection_check_boxes(:size_ids, Size.all, :id, :name) do |b| %>
-      <div>
-        <%= b.check_box %> <%= b.label %>
-      </div>
-    <% end %>
+    <%= form.label :sizes, "Tallas disponibles", class: "block font-bold mb-2 text-gray-700" %>
+    <div class="h-40 overflow-y-auto border border-gray-300 shadow-sm rounded-lg p-3 bg-gray-50">
+      <%= form.collection_check_boxes(:size_ids, Size.all, :id, :name) do |b| %>
+        <label class="flex items-center gap-3 py-2 px-3 rounded-md hover:bg-gray-100 cursor-pointer">
+          <%= b.check_box(class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500") %>
+          <span class="text-sm text-gray-800"><%= b.label %></span>
+        </label>
+      <% end %>
+    </div>
   </div>
-
+  
+  
+  
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
