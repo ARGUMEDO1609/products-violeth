@@ -4,12 +4,24 @@
       <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
     <% end %>
 
-    <%= render @category %>
+    <div class="relative w-full h-80 rounded-lg overflow-hidden hover:brightness-75 transition-all duration-250">
+      <%= image_tag(@category.image, class: "w-full h-full object-cover hover:brightness-75 transition-all duration-250") if @category.image.attached? %>
+      <h1 class="absolute inset-0 flex items-center justify-center text-5xl font-bring text-center font-bold text-indigo-600">
+        <%= @category.name %>
+      </h1>
+    </div>
+    <div class="mt-5">
+      <%= simple_format @category.description %>
+    </div>
+    
 
+
+  <% if current_admin %>
     <%= link_to "Edit this category", edit_category_path(@category), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <%= link_to "Back to categories", categories_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     <div class="inline-block ml-2">
       <%= button_to "Destroy this category", @category, method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
     </div>
+  <% end %>
   </div>
 </div>
