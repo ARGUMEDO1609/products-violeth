@@ -32,14 +32,17 @@ class ProductsController < ApplicationController
   end
   
   def update
+    new_product_params = product_params.to_unsafe_h
+    new_product_params.delete("images") if new_product_params["images"].all?(&:blank?)
     respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: "Product was successfully updated." }
+      if @product.update(new_product_params)
+        format.html { redirect_to product_url(@product), notice: "Product was successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
+  
 
   def destroy
     @product.destroy!
@@ -56,6 +59,6 @@ class ProductsController < ApplicationController
     end
 
     def product_params
-      params.require(:product).permit(:name, :description, :price, :available_sizes, images: [] )
+      params.require(:product).permit(:name, :description, :price, :category_id, :available_sizes, images: [] )
     end
 end

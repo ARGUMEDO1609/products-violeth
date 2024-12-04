@@ -5,6 +5,8 @@ class Product < ApplicationRecord
   has_rich_text :description
   has_many_attached :images
 
+  belongs_to :category, optional: true
+
   ["XS", "S", "M", "L", "XL"].each do |size|
     Size.find_or_create_by(name: size)
   end
