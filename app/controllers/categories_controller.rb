@@ -26,8 +26,10 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         format.html { redirect_to @category, notice: "Category was successfully created." }
+
       else
         format.html { render :new, status: :unprocessable_entity }
+
       end
     end
   end
@@ -43,7 +45,6 @@ class CategoriesController < ApplicationController
     end
   end
 
-
   def destroy
     @category.destroy!
 
@@ -53,7 +54,7 @@ class CategoriesController < ApplicationController
   end
 
   private
-.
+ 
     def set_category
       @category = Category.find(params[:id])
     end

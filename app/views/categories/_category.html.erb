@@ -1,6 +1,6 @@
 <%= link_to category do %>
   <div id="<%= dom_id category %>" class="relative" > 
       <%= image_tag category.image, class: "w-full h-80 object-cover rounded-lg hover:brightness-75 transition-all duration-250" if category.image.attached? %>
-      <p class="font-bring text-3xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "><%= category.name %></p>
+      <p class="font-bring text-3xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white"><%= category.name %></p>
   </div>
 <% end %>
